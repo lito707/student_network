@@ -1,8 +1,10 @@
+<title>{{ title }}</title>
 {% if topics_list %}
-  <h1>Topics</h1>
+  <h1>{{ h1 }}</h1>
   <ul>
     {% for topic in topics_list%}
-      <li><a href="/topics/{{ topic.id }}/">{{ topic.topic_name }}</a></li>
+      <li><a href="{% url 'topics:detail' topic.id %}">{{ topic.topic_name }}</a></li>
+
     {% endfor %}
   </ul>
 {% else %}

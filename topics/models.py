@@ -13,3 +13,7 @@ class Topic(models.Model):
 
     def __str__(self):
         return self.topic_name
+
+
+class Resource(models.Model):
+    

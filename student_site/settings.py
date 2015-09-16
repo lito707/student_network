@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'users',
     'resources',
     'topics',
+    'userhome',
 )
 
 MIDDLEWARE_CLASSES = (

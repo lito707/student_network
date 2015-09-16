@@ -23,7 +23,3 @@ def register(request):
             "form": form,
         }
     return render(request, template, context)
-
-
-def login(request):
-    pass

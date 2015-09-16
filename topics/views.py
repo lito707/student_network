@@ -27,21 +27,26 @@ def detail(request, topic_id):
 
 
 def create(request):
-    title = "Create Topic"
-    template = 'topics/create.html'
+
     form = TopicForm(request.POST or None)
 
     if form.is_valid():
         instance = form.save(commit=False)
         instance.save()
-        title = "Topic was created successfully"
-
+        title = "Success"
+        h1 = "Topic was created successfully"
+        template = 'topics/create_success.html'
         # change template
         context = {
             "title":title,
+            "h1":h1
             # go back to the list or something
+
         }
     else:
+        title = "Create Topic"
+        h1 = "Create Topic"
+        template = 'topics/create.html'
         context = {
             "title":title,
             "form":form,

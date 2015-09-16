@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'^users/', include('users.urls', namespace = 'users')),
     url(r'^resources/', include('resources.urls', namespace = 'resources')),
     url(r'^topics/', include('topics.urls', namespace = 'topics')),
+    url(r'^home/', include('userhome.urls', namespace = 'userhome')),
 ]
