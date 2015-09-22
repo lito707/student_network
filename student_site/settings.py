@@ -39,9 +39,11 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'student_site',
     'users',
-    'resources',
     'topics',
     'userhome',
+
+
+    'actstream'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -105,3 +107,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+AUTHENTICATION_BACKENDS = (
+        'django.contrib.auth.backends.ModelBackend',
+)

@@ -2,12 +2,16 @@ from django.shortcuts import render
 from django.http import Http404
 from .forms import TopicForm
 from .models import Topic
+from django.contrib.auth.models import User
 
-# Create your views here.
+from actstream.actions import follow, unfollow
+# Topics views
 
 def index(request):
     topics_list = Topic.objects.order_by('topic_name')
-    print topics_list
+    curr_user = request.user
+    print "id ", curr_user.id
+
     template = 'topics/index.html'
     context = {
         "topics_list":topics_list,
@@ -54,3 +58,7 @@ def create(request):
         }
 
     return render(request, template, context)
+
+def follow(request):
+    follow(request.user, group, actor_only=False)
+    return
