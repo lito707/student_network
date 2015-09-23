@@ -10,7 +10,9 @@ from actstream.actions import follow, unfollow
 def index(request):
     topics_list = Topic.objects.order_by('topic_name')
     curr_user = request.user
+    print "curr_user", curr_user
     print "id ", curr_user.id
+    print "usr auth ", curr_user.is_authenticated()
 
     template = 'topics/index.html'
     context = {

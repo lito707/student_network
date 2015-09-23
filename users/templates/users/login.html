@@ -1,9 +1,10 @@
 <title>{{ title }}</title>
 <h1>{{ h1 }}</h1>
 
-<form method='POST' action=''>{% csrf_token %}
-  <!-- {{ form.as_p }} -->
 
+<form method='POST' action=''>{% csrf_token %}
+  {{ form.as_p }}
+<!--
   <p>
     <label for="">Username</label>
     <input type="text" name="username" >
@@ -12,9 +13,8 @@
   <p>
     <label for="">Password</label>
     <input type="password" name="password" >
-  </p>
-  <!-- {{ form.username.label_tag }}
-  {{ form.username.label_tag }} -->
+  </p> -->
+
   <input type='submit' value="Login"/>
 
 </form>

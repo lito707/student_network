@@ -3,9 +3,7 @@ from django.contrib.auth import authenticate, login
 
 from .forms import UserRegistrationForm, UserLoginForm
 from django.contrib.auth.models import User
-
-# from django.contrib.auth.forms import UserCreationForm
-
+from django.contrib.auth.forms import AuthenticationForm
 
 
 # Create your views here.
@@ -31,40 +29,30 @@ def register(request):
         }
     return render(request, template, context)
 
-def login(request):
-    h1 = title = "Login"
-
+def sign_in(request):
+    h1 = ""
     template = "users/login.html"
-    # username = request.GET.get['username']
-    # password = request.GET.get['password']
-    #
-    # user = authenticate(username = username, password = password)
-    print "request method ", request.method
+    form = UserLoginForm()
     if request.method == "POST":
-        form = UserLoginForm(request.POST)
-        print "method is post"
-        # user = authenticate(username = username, password = password)
-        if form.is_valid():
-            print "form is valid "
-            username = form['username']
-            password = form['password']
-            user = authenticate(username = username, password = password)
+        username = request.POST['username']
+        password = request.POST['password']
 
-            if user is not None:
-                if user.is_active:
-                    login(request, user)
-                    template = "users/login_success.html"
-            else:
-                h1 = "Username or password incorrect",
+        user = authenticate(username=username, password=password)
+
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                template = "users/login_success.html"
         else:
-            template = "users/error.html"
+            h1 = "username or password incorrect"
     else:
-        form = UserLoginForm()
+
+
+        h1 = "Login"
 
     context = {
-        "title":title,
-        "h1":h1,
-        "form":form
+        "form":form,
+        "h1":h1
     }
 
 
