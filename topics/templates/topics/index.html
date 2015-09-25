@@ -1,13 +1,32 @@
-<title>{{ title }}</title>
-{% if topics_list %}
-  <h1>{{ h1 }}</h1>
-  <ul>
-    {% for topic in topics_list%}
-      <li><a href="{% url 'topics:detail' topic.id %}">{{ topic.topic_name }}</a></li>
+{% load staticfiles %}
 
-    {% endfor %}
-  </ul>
-{% else %}
-  <p>No topics available</p>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{{ title }}</title>
+    <script src="{% static "assets/jquery-1.11.1.js" %}"></script>
+</script>
+  </head>
+  <body>
 
-{% endif %}
+    {% if topics_list %}
+      <h1>{{ h1 }}</h1>
+      <ul>
+        {% for topic in topics_list%}
+          <li><a href="{% url 'topics:detail' topic.id %}">{{ topic.topic_name }}</a></li>
+          <input type="button" name="follow_btn" value="Follow" onclick="window.location.href='topics/follow/1'">
+          <!-- <input type="button" name="folow_button" value="Follow" onclick=alert(window.location)> -->
+          <!-- <button onclick=alert("Hola")
+                class="follow-button" type="button">Follow</button> -->
+          <!-- <button type="button" onclick=""name="button">Follow</button> -->
+
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No topics available</p>
+
+    {% endif %}
+
+  </body>
+</html>

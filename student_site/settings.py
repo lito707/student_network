@@ -108,6 +108,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# STATIC_ROOT = os.path.di rname(BASE_DIR)
+# STATIC_ROOT = ''
+#
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'student_site/static'),
+    # "/var/www/static/",
+)
+
 AUTHENTICATION_BACKENDS = (
         'django.contrib.auth.backends.ModelBackend',
 )

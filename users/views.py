@@ -57,3 +57,6 @@ def sign_in(request):
 
 
     return render(request, template, context)
+
+def follow(request):
+    return "follow from view"

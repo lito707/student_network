@@ -8,6 +8,8 @@ from actstream.actions import follow, unfollow
 # Topics views
 
 def index(request):
+    title = "Topic Index"
+    h1 = "Index"
     topics_list = Topic.objects.order_by('topic_name')
     curr_user = request.user
     print "curr_user", curr_user
@@ -16,7 +18,10 @@ def index(request):
 
     template = 'topics/index.html'
     context = {
+        "title":title,
+        "h1":h1,
         "topics_list":topics_list,
+
     }
 
     return render(request, template, context)
@@ -24,6 +29,7 @@ def index(request):
 
 def detail(request, topic_id):
     template = 'topics/detail.html'
+    print "detail"
     try:
         topic = Topic.objects.get(pk=topic_id)
     except Topic.DoesnotExist:
@@ -62,5 +68,11 @@ def create(request):
     return render(request, template, context)
 
 def follow(request):
-    follow(request.user, group, actor_only=False)
-    return
+    # topic = Topic.objects.get(pk=topic_id)
+    text = "this is follow"
+    print text
+    # if request.method == 'POST':
+
+
+    # follow(request.user, group, actor_only=False)
+    return text
