@@ -7,6 +7,6 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^create', views.create, name='create'),
     url(r'^(?P<topic_id>[0-9]+)/$', views.detail, name='detail'),
-    url(r'^follow/(?P<topic_id>[0-9]+)/$', views.follow, name='follow')
+    url(r'^follow_topic/$', views.follow_topic, name='follow_topic')
 
 ]

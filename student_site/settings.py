@@ -62,7 +62,8 @@ ROOT_URLCONF = 'student_site.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, "templates")],
+        # 'DIRS': [],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -108,14 +109,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# STATIC_ROOT = os.path.di rname(BASE_DIR)
-# STATIC_ROOT = ''
-#
 STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'student_site/static'),
-    # "/var/www/static/",
+    os.path.join(BASE_DIR, "static"),
+
 )
 
 AUTHENTICATION_BACKENDS = (
         'django.contrib.auth.backends.ModelBackend',
 )
+
+# LOGIN_URL = '/users/login/'
+LOGIN_REDIRECT_URL = '/'

@@ -1,27 +1,19 @@
 from django.shortcuts import render
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from .forms import TopicForm
 from .models import Topic
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 from actstream.actions import follow, unfollow
 # Topics views
 
 def index(request):
-    title = "Topic Index"
-    h1 = "Index"
-    topics_list = Topic.objects.order_by('topic_name')
-    curr_user = request.user
-    print "curr_user", curr_user
-    print "id ", curr_user.id
-    print "usr auth ", curr_user.is_authenticated()
 
+    topics_list = Topic.objects.order_by('topic_name')
     template = 'topics/index.html'
     context = {
-        "title":title,
-        "h1":h1,
         "topics_list":topics_list,
-
     }
 
     return render(request, template, context)
@@ -29,7 +21,7 @@ def index(request):
 
 def detail(request, topic_id):
     template = 'topics/detail.html'
-    print "detail"
+    # print "detail",request.GET['topic_id']
     try:
         topic = Topic.objects.get(pk=topic_id)
     except Topic.DoesnotExist:
@@ -61,18 +53,29 @@ def create(request):
         template = 'topics/create.html'
         context = {
             "title":title,
-            "form":form,
-
+            "form":form
         }
 
     return render(request, template, context)
 
-def follow(request):
+
+# @login_required(login_url = '/users/login')
+# @login_required
+def follow_topic(request):
     # topic = Topic.objects.get(pk=topic_id)
-    text = "this is follow"
-    print text
-    # if request.method == 'POST':
+    # print request.user
+    # template = 'topics/index.html'
+    # context =  = RequestContext(request)
+
+    # if request.user.is_authenticated and request.user.is_active
+    if request.method == 'GET':
+        topic_id = request.GET['topic_id']
+        text = "this is follow"
+        print text
+        template = 'topics/follow_success.html'
+
 
 
     # follow(request.user, group, actor_only=False)
-    return text
+    return render(request, template)
+    # return HttpResponse("This is follow")

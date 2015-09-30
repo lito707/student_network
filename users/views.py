@@ -1,6 +1,6 @@
-from django.shortcuts import render
-from django.contrib.auth import authenticate, login
-
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login, logout
+from django.http import HttpResponseRedirect
 from .forms import UserRegistrationForm, UserLoginForm
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
@@ -29,11 +29,12 @@ def register(request):
         }
     return render(request, template, context)
 
+
 def sign_in(request):
-    h1 = ""
-    template = "users/login.html"
-    form = UserLoginForm()
-    if request.method == "POST":
+    h1=""
+    template=""
+    if request.method == 'POST':
+
         username = request.POST['username']
         password = request.POST['password']
 
@@ -42,13 +43,26 @@ def sign_in(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                template = "users/login_success.html"
+                print "loggin"
+                # template = "users/login_success.html"
+                return HttpResponseRedirect("/")
+            else:
+                # User is not active
+                h1 = "Invalid login details"
+                template = "users/error.html"
+
         else:
-            h1 = "username or password incorrect"
+            print "Invalid login details"
+            h1 = "Invalid login details"
+
+
     else:
-
-
+        # form is blank
         h1 = "Login"
+        form = UserLoginForm()
+        template = "registration/login.html"
+        print "not post"
+
 
     context = {
         "form":form,
@@ -58,5 +72,16 @@ def sign_in(request):
 
     return render(request, template, context)
 
-def follow(request):
-    return "follow from view"
+
+
+# def redirect_to_sign_in(next, login_url = None,
+#     redirect_field_name = REDIRECT_FIELD_NAME):
+#
+#     return ""
+
+def sign_out(request):
+    print "log out usr", request.user
+    logout(request)
+    print request.user.is_authenticated()
+    # template = "users/logged_out.html"
+    return HttpResponseRedirect("/")
