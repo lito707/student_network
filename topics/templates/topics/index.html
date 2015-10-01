@@ -1,21 +1,20 @@
-{% extends "base.html" %}
+<!-- {% extends "base.html" %} -->
 {% load staticfiles %}
 
 
 
-{% block header_static_files %}
+
 <link rel="stylesheet" href="{% static "css/buttons.css" %}" media="screen" title="no title" charset="utf-8">
-<script src="{% static "js/jquery-1.11.3.js" %}"></script>
-<script src="{% static "js/follow.js" %}"></script>
-{% endblock %}
+
 
 {% block content%}
 
-<!-- <div class="container"> -->
+<div id="topic-container">
 	{% if topics_list %}
 	<ul>
 
 	{% for topic in topics_list%}
+
 	<li id=index-topic-name ><a href="{% url 'topics:detail' topic.id %}">{{ topic.topic_name }}</a></li>
 	<button id="follow-btn" data-topicid="{{ topic.id }}" type="button">Follow</button>
 	<!-- <p>{{ topic.description }}</p> -->
@@ -29,7 +28,9 @@
 
 	{% endif %}	
 
-<!-- </div> -->
+</div>
+<script src="{% static "js/jquery-1.11.3.js" %}"></script> 
+<script src="{% static "js/follow.js" %}"></script>
 
 
 
