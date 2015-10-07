@@ -18,9 +18,9 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^users/', include('users.urls', namespace = 'users')),
-    url(r'^accounts/', include('users.urls', namespace = 'users')),
+    url(r'^users/', include('myusers.urls', namespace = 'users')),
     url(r'^topics/', include('topics.urls', namespace = 'topics')),
+    url(r'^resources/', include('resources.urls', namespace = 'resources')),
     url(r'^$', include('userhome.urls', namespace = 'userhome')),
     url(r'^activity/', include('actstream.urls')),
 ]

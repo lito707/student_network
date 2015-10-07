@@ -38,7 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'student_site',
-    'users',
+    'myusers',
     'topics',
     'userhome',
 
@@ -119,4 +119,4 @@ AUTHENTICATION_BACKENDS = (
 )
 
 # LOGIN_URL = '/users/login/'
-LOGIN_REDIRECT_URL = '/'
+# LOGIN_REDIRECT_URL = '/topics/'
