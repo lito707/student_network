@@ -4868,8 +4868,8 @@ select[multiple].input-group-sm>.form-control,select[multiple].input-group-sm>.i
 }
 
 .navbar-default .navbar-brand:focus,.navbar-default .navbar-brand:hover {
-    color: #5e5e5e;
-    background-color: transparent
+    color: black;
+    background-color: #d4e9ff
 }
 
 .navbar-default .navbar-text {
@@ -4881,8 +4881,9 @@ select[multiple].input-group-sm>.form-control,select[multiple].input-group-sm>.i
 }
 
 .navbar-default .navbar-nav>li>a:focus,.navbar-default .navbar-nav>li>a:hover {
-    color: #333;
-    background-color: transparent
+    color: black;
+    background-color: #d4e9ff;
+    font-weight:bold;
 }
 
 .navbar-default .navbar-nav>.active>a,.navbar-default .navbar-nav>.active>a:focus,.navbar-default .navbar-nav>.active>a:hover {
@@ -7202,7 +7203,7 @@ td.visible-print,th.visible-print {
 }
 }
 
-/*Personalized Style*/
+Personalized Style
 
 
 #follow-btn{
@@ -7244,7 +7245,8 @@ td.visible-print,th.visible-print {
     font-size: 24px;
     border-radius: 10px;
     margin: 15px;
-    margin-top: 70px;
+    margin-top: 0px;
+    
 
 }
 
@@ -7263,14 +7265,9 @@ td.visible-print,th.visible-print {
     font-size: 24px;
     border-radius: 10px;
     margin:15px;
-    margin-top: 70px;
+    margin-top: 0px;
     padding: 15px;
 }
-/*
-#right-sidebar {
-    background-color:white; 
-    border: 5px solid black;
-}*/
 
 #center-section{
     width:46%;
