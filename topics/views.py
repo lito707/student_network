@@ -2,12 +2,17 @@ from django.shortcuts import render
 from django.http import Http404, HttpResponse
 from .forms import TopicForm
 from .models import Topic
-from django.contrib.auth.models import User
+from resources.models import Resource
+
+from django.contrib.auth.models import User, Group
 from django.contrib.auth.decorators import login_required
+
 
 from actstream.actions import follow, unfollow
 from actstream.models import following, followers
+from actstream import action
 from django.http import HttpResponseRedirect
+from actstream.registry import is_installed
 # Topics views
 
 def index(request):
@@ -42,6 +47,7 @@ def create(request):
         
         instance.user_id = request.user.id
         instance.save()
+        # print instance.topic_name
         title = "Success"
         h1 = "Topic was created successfully"
         template = 'topics/create_success.html'
@@ -51,6 +57,8 @@ def create(request):
             "h1":h1
             # go back to the list or something
         }
+        action.send(request.user, verb='created',target=instance)
+
             
     else:
         template = 'topics/create.html'
@@ -83,7 +91,7 @@ def delete(request):
     return render(request, template, context)
 
 
-def follow_topic(request):
+def my_follow(request):
     # topic = Topic.objects.get(pk=topic_id)
     # print request.user
     # template = 'topics/index.html'
@@ -102,6 +110,10 @@ def follow_topic(request):
         follow(req_user_obj, topic_to_follow, actor_only=False)
         text = "this is follow"
         print text
+        print "topics", is_installed(Topic)
+        print "users", is_installed(User)
+        print "group", is_installed(Group)
+        print "resources", is_installed(Resource)
     else:
         print "not get", request    
 
@@ -120,4 +132,17 @@ def my_following(request):
     context={
         "following_list":following_list,
     }
+    return render(request, template, context)
+
+def recent(request):
+    from actstream.models import user_stream
+    user = User.objects.get(pk=request.user.id)
+    stream = user_stream(user, with_user_activity=True)
+
+    template = "activities/recent_activities.html"
+
+    context = {
+        "stream":stream
+    }
+
     return render(request, template, context)

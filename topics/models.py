@@ -6,7 +6,7 @@ class Topic(models.Model):
     topic_name = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now = False, auto_now_add = True)
     description = models.TextField()
-    user = models.ForeignKey(User) 
+    user = models.ForeignKey(User,null=True) 
     
 
     # use of email to perform activities

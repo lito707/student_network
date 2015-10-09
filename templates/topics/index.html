@@ -1,8 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
-
-
 {% block content%}
 
 <div class="section" id="topic-index-container">
@@ -12,16 +10,15 @@
 	{% for topic in topics_list%}
 
 	<li id="index-topic-name" ><a href="{% url 'topics:detail' topic.id %}">{{ topic.topic_name }}</a></li>
-	<p>Description: {{ topic.description }}</p>
+	<p id="index-topic-description">Description: {{ topic.description }}</p>
 
 	<!-- Check if user is authenticated and not follows topic -->
 	{% if user.is_authenticated %}
 
-	<button class="follow-btn" id="follow-btn" data-topicid="{{ topic.id }}" type="button">Follow</button>
-	{% else %}
+	<button class="follow-btn" id="follow-btn" data-topicid="{{ topic.id }}" type="button">Follow</button>	
 
-	
 	{% endif %}
+
 	{% endfor %}
 
 	</ul>

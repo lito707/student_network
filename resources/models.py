@@ -7,10 +7,10 @@ class Resource(models.Model):
     resource_name = models.CharField(max_length=100)
     url = models.TextField()
     description = models.TextField()
-    resource_type = models.Charfield(max_length=100)
+    resource_type = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now = False, auto_now_add = True)
-    user = models.ForeignKey(User) 
-    topic = models.ForeignKey(Topic)
+    # user = models.ForeignKey(User) 
+    # topic = models.ForeignKey(Topic)
     
 
     # use of email to perform activities

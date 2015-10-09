@@ -81,9 +81,9 @@ def sign_in(request):
 #     return ""
 
 def sign_out(request):
-    print "log out usr", request.user
-    print "log out usr", request.user.id
+    # print "log out usr", request.user
+    # print "log out usr", request.user.id
     logout(request)
-    print request.user.is_authenticated()
+    # print request.user.is_authenticated()
     
     return HttpResponseRedirect("/")

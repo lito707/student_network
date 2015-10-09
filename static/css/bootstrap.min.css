@@ -7203,7 +7203,7 @@ td.visible-print,th.visible-print {
 }
 }
 
-Personalized Style
+/*Personalized Style*/
 
 
 #follow-btn{
@@ -7232,9 +7232,11 @@ Personalized Style
   background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
   text-decoration: none;
 }
+
 .section{
     line-height:30px;
     background-color:#d9d9d9;
+    /*background-color:black;*/
     height: 100%;
     width: 97%;
     float:left;
@@ -7245,14 +7247,21 @@ Personalized Style
     font-size: 24px;
     border-radius: 10px;
     margin: 15px;
-    margin-top: 0px;
-    
+    margin-top: 0px;    
 
 }
 
 
 #topic-index-container{
     width: 97%;
+}
+
+#index-topic-name {
+    padding: 20px;
+    padding-bottom: 7px;
+}
+#index-topic-description{
+    font-size: 14px;
 }
 
 
@@ -7270,7 +7279,7 @@ Personalized Style
 }
 
 #center-section{
-    width:46%;
+    width:70%;
 }
 
 #login-container{
@@ -7279,7 +7288,7 @@ Personalized Style
     height: auto;
 }
 
-#create-container .center-block{
+#create-topic-container .center-block{
     font-size: 14px;
     width: auto;
     height: auto;

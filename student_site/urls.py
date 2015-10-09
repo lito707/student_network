@@ -22,5 +22,5 @@ urlpatterns = [
     url(r'^topics/', include('topics.urls', namespace = 'topics')),
     url(r'^resources/', include('resources.urls', namespace = 'resources')),
     url(r'^$', include('userhome.urls', namespace = 'userhome')),
-    url(r'^activity/', include('actstream.urls')),
+    url(r'^activities/', include('activities.urls', namespace = 'activities')),
 ]

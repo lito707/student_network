@@ -41,10 +41,18 @@ INSTALLED_APPS = (
     'myusers',
     'topics',
     'userhome',
+    'activities',
 
 
     'actstream'
 )
+
+ACTSTREAM_SETTINGS = {
+    'FETCH_RELATIONS': True,
+    'USE_PREFETCH': True,
+    # 'USE_JSONFIELD':,
+    'GFK_FETCH_DEPTH':1,
+}
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
