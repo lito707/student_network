@@ -4,8 +4,9 @@ from django.contrib.auth.models import User
 
 # registering models for activity stream library
 class MyUsersConfig(AppConfig):
-    name = 'myusers'
+	name = 'myusers'
 
-    def ready(self):
-        # registry.register(self.get_model('MyUser'))
-        registry.register(User)
+	def ready(self):
+		registry.register(User)
+        # register the django User model 
+        

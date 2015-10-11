@@ -8,9 +8,5 @@ urlpatterns = [
     url(r'^create', views.create, name='create'),
     url(r'^delete', views.delete, name='delete'),
     url(r'^(?P<topic_id>[0-9]+)/$', views.detail, name='detail'),
-    url(r'^follow_topic/$', views.my_follow, name='my_follow'),
-    url(r'^following/$', views.my_following, name='my_following'),
-
-
-
+    
 ]

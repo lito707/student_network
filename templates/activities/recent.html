@@ -1,18 +1,23 @@
 
 
 
+
+
+<div  id="activities">
 {% if user.is_authenticated %}
-
 <h1>Authenticated{{ topic }}</h1>
-
+	
 {% for s in stream %}
 
 	<p>{{ s }}</p>
 
 {% endfor %}
+	
 {% else %}
 
 <h1>No luck</h1>
 
 {% endif%}
+</div>
+
 
