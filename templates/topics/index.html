@@ -3,21 +3,29 @@
 
 {% block content%}
 
-<div class="section" id="topic-index-container">
+
 	{% if topics_list %}
 	<ul>
 
 	{% for topic in topics_list%}
+	<div class="section" id="topic-index-container">
 
-	<li id="index-topic-name" ><a href="{% url 'topics:detail' topic.id %}">{{ topic.topic_name }}</a></li>
-	<p id="index-topic-description">Description: {{ topic.description }}</p>
+		<li id="index-topic-name" ><a href="{% url 'topics:detail' topic.id %}">{{ topic.topic_name }}</a></li>
 
-	<!-- Check if user is authenticated and not follows topic -->
-	{% if user.is_authenticated %}
+		<p id="index-topic-description">Description: {{ topic.description }}</p>
+		
+		{% if user.is_authenticated and topic in following_list%}
+		
+		<button class="btn followButton following" data-topicid="{{ topic.id }}">Following</button>	
 
-	<button class="follow-btn" id="follow-btn" data-topicid="{{ topic.id }}" type="button">Follow</button>	
+		{% elif user.is_authenticated %}
 
-	{% endif %}
+		<button class="btn followButton" data-topicid="{{ topic.id }}">Follow</button>
+
+		{% endif %}
+
+	</div>
+
 
 	{% endfor %}
 
@@ -29,7 +37,7 @@
 
 	{% endif %}	
 
-</div>
+
 
 
 {% endblock %}

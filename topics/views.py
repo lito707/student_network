@@ -2,22 +2,34 @@ from .forms import TopicForm
 from .models import Topic
 from django.shortcuts import render
 from django.http import Http404, HttpResponse
-from resources.models import Resource
 from django.contrib.auth.models import User, Group
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-from actstream.registry import is_installed
-
+from actstream.actions import follow, unfollow
+from actstream.models import following, followers
+from actstream import action
 
 # Topics views
 
 def index(request):
 
-    topics_list = Topic.objects.order_by('topic_name')
+
+    if request.user.is_authenticated():
+
+        topics_list = Topic.objects.order_by('topic_name')
+        following_list=  following(request.user)
+
+        context = {
+            "topics_list":topics_list,
+            "following_list":following_list,
+        }
+    else:
+        topics_list = Topic.objects.order_by('topic_name')
+        context = {
+            "topics_list":topics_list,
+        }
+
     template = 'topics/index.html'
-    context = {
-        "topics_list":topics_list,
-    }
 
     return render(request, template, context)
 
@@ -86,15 +98,62 @@ def delete(request):
 
     return render(request, template, context)
 
-def recent(request):
-    from actstream.models import user_stream
-    user = User.objects.get(pk=request.user.id)
-    stream = user_stream(user, with_user_activity=True)
 
-    template = "activities/recent_activities.html"
+def my_follow(request):
+    # topic = Topic.objects.get(pk=topic_id)
+    # print request.user
+    # template = 'topics/index.html'
+    # context =  = RequestContext(request)
 
-    context = {
-        "stream":stream
+    # if request.user.is_authenticated and request.user.is_active
+    if request.method == 'GET':        
+        print "this is follow"
+        topic_id = request.GET['topic_id']
+        topic_to_follow = Topic.objects.get(pk=topic_id)
+        req_user_obj = User.objects.get(username=request.user)        
+        template = 'topics/follow_success.html'
+        follow(req_user_obj, topic_to_follow, actor_only=False)
+        # text = "this is follow"
+        # print text
+        # print "topics", is_installed(Topic)
+        # print "users", is_installed(User)
+        # print "group", is_installed(Group)
+        # print "resources", is_installed(Resource)
+    else:
+        print "not get", request    
+        
+    return render(request, template)
+    # return HttpResponse("This is follow")
+
+def my_unfollow(request):
+    if request.method == 'GET':        
+        print "this is unfollow"
+        topic_id = request.GET['topic_id']
+        topic_to_unfollow = Topic.objects.get(pk=topic_id)
+        req_user_obj = User.objects.get(username=request.user)        
+        template = 'topics/unfollow_success.html'
+        unfollow(req_user_obj, topic_to_unfollow)
+    else:
+        print "not get", request    
+
+    return render(request, template)
+
+
+@login_required(login_url = '/users/login')
+def my_following(request):
+    print "this following",request.user 
+    # req_usr = User.objects.get(username=request.user)
+    # print req_usr
+    following_list = []
+    f_list=  following(request.user)
+    for f in f_list:
+        if f is not None:
+            following_list.append(f)
+    
+
+    template = "topics/following.html"
+
+    context={
+        "following_list":following_list,
     }
-
     return render(request, template, context)

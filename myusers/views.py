@@ -33,7 +33,8 @@ def register(request):
 
 def sign_in(request):
     h1=""
-    template=""
+    template="myusers/login.html"
+    form = MyUserLoginForm(request.POST or None)
     if request.method == 'POST':
 
         username = request.POST['username']
@@ -49,20 +50,13 @@ def sign_in(request):
                 return HttpResponseRedirect("/")
             else:
                 # User is not active
-                h1 = "Invalid login details"
-                template = "myusers/error.html"
-
+                h1 = "User not active"
         else:
             print "Invalid login details"
             h1 = "Invalid login details"
-
-
     else:
-        # form is blank
-        h1 = "Login"
-        form = MyUserLoginForm()
-        template = "myusers/login.html"
-        print "not post"
+        h1 = "Login"        
+        
 
 
     context = {
