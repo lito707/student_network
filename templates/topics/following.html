@@ -3,26 +3,24 @@
 
 {% block following_content %}
 <div class="section" id="following-container">
-
 	<h2>Following</h2>
 	{% if following_list %}
 	<ol>
 		{% for topic in following_list %}
-		<li><a href="{% url 'topics:detail' topic.id%}">{{ topic.topic_name }}</a></li>
+		<li>
+			<a href="{% url 'topics:detail' topic.id%}">{{ topic.topic_name }}</a>
+			<button class="btn btn-default add-resource " id= "add-resource-btn-{{topic.id}}" data-topicid="{{ topic.id }}">Add Resource</button>	
+		</li>
 
-		<button class="btn btn-default add-resource" data-topicid="{{ topic.id }}">Add Resource</button>	
-		<div class='add-resource-form' >
-		<p>Is showing</p>
+		{% include 'resources/add-resource-form.html' with following_topic=topic %}
 
-		</div>
+			
+		{% endfor %}
 
-
-		{% endfor %}	
 	</ol>
 	{% else %}
 	<p>Currently not following any topics.</p>
 	{% endif %}
-
-
 </div>
+
 {% endblock %}

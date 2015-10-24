@@ -42,6 +42,8 @@ INSTALLED_APPS = (
     'topics',
     'userhome',
     'activities',
+    'resources',
+
 
 
     'actstream'

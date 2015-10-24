@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
 
+
 $('button.followButton').on('click', null,function(e){
     e.preventDefault();
     $button = $(this);
@@ -38,18 +39,10 @@ $('button.followButton').hover(function(){
     }
 });
 
-$('button.add-resource').on('click',null,function(e){
-    e.preventDefault();
-    $button = $(this);
-    $button.hide();
-    topicid = $button.attr("data-topicid");
-    $button.next('.add-resource-form').show();
-    // $('.add-resource-form').show();
-});
+
+
 
 $('#activities-container').load('/activities/recent/')
-$('.add-resource-form').load('/resources/add/')
-
 
   
 })

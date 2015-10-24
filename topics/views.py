@@ -66,7 +66,7 @@ def create(request):
             # go back to the list or something
         }
         action.send(request.user, verb='created',target=instance)
-
+        print form
             
     else:
         template = 'topics/create.html'

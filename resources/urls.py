@@ -5,6 +5,6 @@ from . import views
 urlpatterns = [
     # url(r'^$', views.index, name='index'),
     # url(r'^$', views.index, name='index'),
-    url(r'^add', views.add_resource, name='add_resource'),
+    url(r'^add_resource/(?P<topic_id>[0-9]+)/$', views.add_resource, name='add_resource'),
     # url(r'^delete', views.delete, name='delete'),
 ]

@@ -1,0 +1,28 @@
+<h1>{{following_topic.id}}</h1>
+
+<div class="reply-resource-form" id="resource-form-{{following_topic.id}}">
+  <form method="post">{% csrf_token %}
+    <div class="form-group">
+      <label>Type</label>
+      <input class="form-control" id="id_resource_type" name="resource_type" type="resource_type" placeholder="Resource type (e.g. Photo, article, paper, etc.)">
+    </div>
+    <div class="form-group">
+      <label>Resource Name</label>
+      <input class="form-control" id="id_resource_name" name="resource_name" type="resource_name" placeholder="{{form.resource_name.label}}">
+    </div>
+    <div class="form-group">
+      <label>Link</label>
+      <input class="form-control" id="id_url" name="url" type="url" placeholder='Link where the resource can be found'>
+     </div>
+    <div class="form-group">
+      <label>Description</label>
+      <input class="form-control" id="id_description" name="description" type="text" placeholder='Brief description of the resource (e.g. This is an article about ...)'>
+    </div>     
+    
+  <input class="btn btn-default" id="{{following_topic.id}}" data-topicid="{{following_topic.id}}" type='submit' value="Submit"/> 
+  </form>
+</div>
+
+
+
+
