@@ -171,6 +171,21 @@ class MyusersUser(models.Model):
         db_table = 'myusers_user'
 
 
+class ResourcesResource(models.Model):
+    id = models.IntegerField(primary_key=True)  # AutoField?
+    resource_name = models.CharField(max_length=100)
+    url = models.CharField(max_length=200)
+    description = models.TextField()
+    resource_type = models.CharField(max_length=100)
+    created_at = models.DateTimeField()
+    user = models.ForeignKey(AuthUser)
+    topic = models.ForeignKey('TopicsTopic')
+
+    class Meta:
+        managed = False
+        db_table = 'resources_resource'
+
+
 class TopicsTopic(models.Model):
     id = models.IntegerField(primary_key=True)  # AutoField?
     topic_name = models.CharField(max_length=100)

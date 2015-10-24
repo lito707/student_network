@@ -8,7 +8,10 @@ $('button.add-resource').on('click',function(e){
     topicid = $button.attr("data-topicid");
 
     $.get('/resources/add_resource/'+topicid ,function(data){
-        alert(data);
+    id = 'resource-form-'+topicid
+    
+    $("#"+id).show();
+        // alert(data);
     //     // $(this).next('.reply-resource-form').show();
     //     // $(this).parent().next('.reply-resource-form').css("display", "block");
     //     // $('#add-resource ').attr('data-topicid', topicid);
@@ -19,8 +22,6 @@ $('button.add-resource').on('click',function(e){
 
 
     });
-    id = 'resource-form-'+topicid
-    $("#"+id).show();
     
     // $('.reply-resource-form').show();
 });

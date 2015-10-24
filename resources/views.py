@@ -15,10 +15,6 @@ def add_resource(request,topic_id):
 	
 	
 	if form.is_valid():
-	# if request.method == "POST":
-		print "form is valid", form.is_valid()
-		print "errors", form.errors
-		print "non non_field_errors ",form.non_field_errors
 
 		instance = form.save(commit=False)
 		instance.topic_id = topic_id
@@ -27,8 +23,8 @@ def add_resource(request,topic_id):
 		instance.save()
 		context={}
 		# print "resource type was added "+ res_type
-		action.send(request.user, verb=('added'+res_type),target=target_topic)
-		template = "resources/add_success.html"
+		action.send(request.user, verb=('added '+res_type+' to '),target=target_topic)
+		template = "resources/add-success.html"
 		print "add_success"
 		return render(request, template, context)
 	else:
