@@ -3,7 +3,6 @@
 
 {% block following_content %}
 <div class="section" id="following-container">
-<!-- <div class="jumbotron" id="following-container"> -->
 	<h2>Following</h2>
 	{% if following_list %}
 	<ol>
@@ -19,7 +18,13 @@
 
 	</ol>
 	{% else %}
-	<p>Currently not following any topics.</p>
+	<div class="alert alert-info" role="alert">
+		<strong>You are currently not following any topic!</strong>
+		<br>
+		<strong>Start following <a href="{% url 'topics:index' %}">here</a>!</strong>
+
+	</div>
+
 	{% endif %}
 </div>
 

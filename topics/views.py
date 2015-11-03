@@ -69,7 +69,6 @@ def create(request):
 
     if form.is_valid():
         instance = form.save(commit=False)
-        
         # check whether the topic name already exist 
         topic_exist = \
                 (Topic.objects.filter(topic_name=instance.topic_name).exists())
@@ -114,7 +113,6 @@ def delete(request, topic_id):
     instance = Topic.objects.get(id=topic_id)
     instance.delete()
     template = "topics/delete_success.html"
-
     return render(request, template)
 
 def my_follow(request):
@@ -171,9 +169,7 @@ def my_following(request):
         # check whether the topic still exists
         if f is not None:
             following_list.append(f)    
-
     template = "topics/following.html"
-
     context={
         "following_list":following_list,
     }

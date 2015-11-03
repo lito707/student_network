@@ -2,42 +2,28 @@
 {% load staticfiles %}
 
 {% block index_content%}
-
-
 	{% if topics_list %}
 	<ul>
-
 	{% for topic in topics_list%}
 	<div class="section" id="topic-index-container">
-
 		<li id="index-topic-name" ><a href="{% url 'topics:detail' topic.id %}">{{ topic.topic_name }}</a></li>
-
 		<p id="index-topic-description">Description: {{ topic.description }}</p>
-		
 		{% if user.is_authenticated and topic in following_list%}
-		
 		<button class="btn followButton following" data-topicid="{{ topic.id }}">Following</button>	
-
 		{% elif user.is_authenticated %}
-
 		<button class="btn followButton" data-topicid="{{ topic.id }}">Follow</button>
-
 		{% endif %}
-
 	</div>
-
-
 	{% endfor %}
-
 	</ul>
-
 	{% else %}
-
-	<p>No topics available</p>
-
+	<div class="section" id="topic-index-container">
+	<h2>topics</h2>
+		<div class="alert alert-info" role="alert">
+			<strong>No topics available!</strong>
+			<br>
+			<strong>Add a new topic <a href="{% url 'topics:create' %}">here</a>!</strong>
+		</div>
+	</div>
 	{% endif %}	
-
-
-
-
 {% endblock %}
