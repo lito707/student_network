@@ -58,7 +58,6 @@ def sign_in(request):
             else:
                 h1 = "User not active"
         else:
-            print "Invalid login details"
             h1 = "Invalid login details"
     else:
         h1 = "Login"        

@@ -19,7 +19,11 @@ https://www.djangoproject.com/download/
 -- Or follow the guide in the link provided
 http://django-activity-stream.readthedocs.org/en/latest/installation.html
 
-4) To lauch the student_site application 
+4) To lauch the student_network application follow the next steps:
+	1. Go to the directory where the student_network application is located.
+	2. Make sure the working directory is the student_network folder
+	3. Launch the server with the following command
+		- python manage.py runserver
 	 
 
 

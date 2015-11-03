@@ -8,11 +8,8 @@ class MyUserRegistrationForm(UserCreationForm):
 	the django authentication forms
 	"""
 	class Meta:
-		"""
-    	Model that the form uses
-    	"""	
-    	model = User
-    	fields = ['first_name', 'last_name', 'username', 'email']
+		model = User
+		fields = ['first_name', 'last_name', 'username', 'email']
 
 class MyUserLoginForm(AuthenticationForm):
 	"""

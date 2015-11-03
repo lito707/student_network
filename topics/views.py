@@ -58,7 +58,7 @@ def detail(request, topic_id):
 
     return render(request, template, context)
 
-# login is required to created a topic
+# login required to created a topic
 @login_required(login_url = '/users/login')
 def create(request):
     """
@@ -80,7 +80,7 @@ def create(request):
             template = 'topics/create_success.html'
             # record the action performed a create action with the request user 
             # and a topic instance
-            print action.send(request.user, verb='created',target=instance)
+            action.send(request.user, verb='created',target=instance)
             return render(request,template)            
     else:
         
@@ -150,7 +150,7 @@ def my_unfollow(request):
             topic_to_unfollow = Topic.objects.get(pk=topic_id)
             req_user = User.objects.get(username=request.user)        
             template = 'topics/unfollow_success.html'
-        # user request to unfollow a topic 
+            # user request to unfollow a topic 
             unfollow(req_user, topic_to_unfollow) 
             return render(request, template)
         else:

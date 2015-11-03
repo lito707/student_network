@@ -5,5 +5,5 @@ def home(request):
 	"""
 	Render the home template
 	"""
-    template  = "home.html"
-    return render(request, template)
+	template  = "home.html"
+	return render(request, template)

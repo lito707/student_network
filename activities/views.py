@@ -10,7 +10,6 @@ def recent(request):
 	"""
 	# retrieve the stream from an user
 	stream = user_stream(request.user, with_user_activity=True)
-	print stream
 	template = "activities/recent.html"	
 	context = {
 		# show the latest 20 activities
