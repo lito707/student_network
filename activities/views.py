@@ -1,19 +1,20 @@
 from django.shortcuts import render
-from actstream.models import actor_stream, model_stream
+from actstream.models import user_stream
 from topics.models import Topic
-# Create your views here.
 
 
 def recent(request):
-
-	# stream = actor_stream(request.user)
-	# "user started following topic 4 2 minutes ago"
-	stream = model_stream(request.user)
-
-	template = "activities/recent.html"
-
+	"""
+	Render the template showing recent activitiy of the user, using actstream 
+	user_stream
+	"""
+	# retrieve the stream from an user
+	stream = user_stream(request.user, with_user_activity=True)
+	print stream
+	template = "activities/recent.html"	
 	context = {
-		"stream":stream
+		# show the latest 20 activities
+		"stream":stream[:20]
 	}
 
 	return render(request, template, context)

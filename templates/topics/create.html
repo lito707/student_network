@@ -1,23 +1,39 @@
 {% extends "base.html" %}
 
-<!-- Create topic -->
 {% block topic_create_content %}
+
 <div class="section" id="create-topic-container">
-	<title>{{ title }}</title>
-	<h1>{{ h1 }}</h1>
+<title>Create Topic</title>
+<h1>Create Topic</h1>
 
-	{% if topic_exist %}
+{% if topic_exist %}
 
-	<p>Please use another name or click <a href="{% url 'topics:index' %}">here</a> to see topics available.</p>
+<p>Please use another name or click <a href="{% url 'topics:index' %}">here</a> to see topics available.</p>
 
+{% endif %}
+
+<form method='POST'>{% csrf_token %}
+<div class="form-group">
+	{% if form.topic_name.errors %}
+	<div class="alert alert-danger" role="alert">
+	<span class="sr-only">Error:</span>{{ form.topic_name.errors }}
+		</div>
 	{% endif %}
+		<label>{{form.topic_name.label}}</label>
+		<input class="form-control" id="id_topic_name" name="topic_name" type="text">
 
-	<form method='POST'>{% csrf_token %}
-  	{{ form.as_p }}
-  	<input class="btn btn-lg btn-primary" type='submit' value="Create"/>
-
-	</form>
-
+</div>
+<div class="form-group">
+	{% if form.description.errors %}
+	<div class="alert alert-danger" role="alert">
+	<span class="sr-only">Error:</span>{{ form.description.errors }}
+		</div>
+	{% endif %}
+		<label for="id_description">Description:</label> 
+		<textarea class="form-control" cols="40" id="id_description" name="description" rows="10"></textarea>
+</div>
+	<input class="btn btn-lg btn-primary" type='submit' value="Create"/>
+</form>
 </div>
 
 {% endblock %}

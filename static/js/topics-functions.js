@@ -1,7 +1,8 @@
+/*Functions to handle topic events*/
 $(document).ready(function() {
 
 
-
+/* Follow a topic that is not being followed, on click change to following*/
 $('button.followButton').on('click', null,function(e){
     e.preventDefault();
     $button = $(this);
@@ -26,6 +27,7 @@ $('button.followButton').on('click', null,function(e){
     }
 });
 
+/* For a following topic unfollow if clicked and return to a follow button*/
 $('button.followButton').hover(function(){
     $button = $(this);
     if($button.hasClass('following')){
@@ -39,6 +41,13 @@ $('button.followButton').hover(function(){
     }
 });
 
+$('button.delete-topic').click(function(){
+    var topicid;
+        topicid = $(this).attr("data-topicid");
+        delete_topic(topicid);
+    $(this).unbind();
+
+})
 
 
 
@@ -58,6 +67,13 @@ function unfollow_topic (topicid) {
     })
 }
 
+function delete_topic (topicid) { 
+    id = 'topic-' + topicid
+    $.get('/topics/delete/'+topicid ,function(data) {
+        $("#"+id).empty();
+        $("#"+id).append(data);
+    })
+}
 
 
 

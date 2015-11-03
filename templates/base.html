@@ -10,9 +10,6 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
-
-   <!--  <title>{% block head_title %} {% endblock %}</title> -->
-
     <!-- Bootstrap core CSS -->
     <link href="{% static "css/student-network-bootstrap.min.css" %}" rel="stylesheet">
 
@@ -25,7 +22,7 @@
 
     {% include 'navbar.html' %}
 
-    {% block content %}{% endblock %}
+    
 
     <!-- myusers -->
     {% block login_content %}{% endblock %}    
@@ -36,10 +33,15 @@
 
     <!-- topics -->
     {% block topic_create_content %}{% endblock %}
+    {% block index_content%}{% endblock %}
+    {% block topics_created_content%}{% endblock %}
+    {% block topic_detail_content %}{% endblock %}
 
     {% block create_successful_content %}{% endblock %}
 
     {% block following_content %}{% endblock %}
+
+    {%block add_resource_form_content %}{%endblock%}
 
 
 

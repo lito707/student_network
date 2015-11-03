@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block topics_created_content%}
+<div class="section" id="following-container">
+	<h2>My Topics</h2>
+	{% if topics_created %}
+	<ol>
+		{% for topic in topics_created %}
+		<div id="topic-{{topic.id}}">
+			<li>
+				<a href="{% url 'topics:detail' topic.id%}">{{ topic.topic_name }}</a>
+			</li>
+				<button class="btn btn btn-sm btn-default add-resource" id= "add-resource-btn-{{topic.id}}" data-topicid="{{ topic.id }}">Add Resource</button>
+				<button class="btn btn-sm btn-primary delete-topic" id= "delete-topic-btn-{{topic.id}}" data-topicid="{{ topic.id }}">Delete Topic</button>		
+			<div id="resource-form-{{topic.id}}"></div>
+		</div>
+		{% endfor %}
+
+	</ol>
+	{% else %}
+	<p>You have no topics.</p>
+	<p>Create one!</p>
+	{% endif %}
+</div>
+{% endblock %}

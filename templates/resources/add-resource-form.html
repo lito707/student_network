@@ -1,28 +1,49 @@
-<h1>{{following_topic.id}}</h1>
+{% load staticfiles %}
 
-<div class="reply-resource-form" id="resource-form-{{following_topic.id}}">
-  <form method="post">{% csrf_token %}
-    <div class="form-group">
-      <label>Type</label>
+<form method="post" id="form-{{following_topic.id}}" action="/resources/add_resource/{{following_topic.id}}/">{% csrf_token %}
+  <div class="form-group">
+    {% if form.resource_type.errors %}
+    <div class="alert alert-danger" role="alert">
+       <span class="sr-only">Error:</span>
+        {{ form.resource_type.errors }}
+      </div>
+      {% endif %}
+      <label>{{form.resource_type.label}}</label>
       <input class="form-control" id="id_resource_type" name="resource_type" type="resource_type" placeholder="Resource type (e.g. Photo, article, paper, etc.)">
     </div>
     <div class="form-group">
+      {% if form.resource_name.errors %}
+      <div class="alert alert-danger" role="alert">
+        <span class="sr-only">Error:</span>
+        {{ form.resource_name.errors }}
+      </div>
+      {% endif %}
       <label>Resource Name</label>
-      <input class="form-control" id="id_resource_name" name="resource_name" type="resource_name" placeholder="{{form.resource_name.label}}">
+      <input class="form-control" id="id_resource_name" name="resource_name" type="resource_name" placeholder="Name of the resource (e.g. Title, Journal)">
     </div>
     <div class="form-group">
+      {% if form.url.errors %}
+      <div class="alert alert-danger" role="alert">
+        <span class="sr-only">Error:</span>
+        {{ form.url.errors }}
+        </div>
+      {% endif %}
       <label>Link</label>
       <input class="form-control" id="id_url" name="url" type="url" placeholder='Link where the resource can be found'>
      </div>
     <div class="form-group">
+      {% if form.description.errors %}
+      <div class="alert alert-danger" role="alert">
+      <span class="sr-only">Error:</span>
+      {{ form.description.errors }}
+      </div>
+      {% endif %}
       <label>Description</label>
       <input class="form-control" id="id_description" name="description" type="text" placeholder='Brief description of the resource (e.g. This is an article about ...)'>
     </div>     
-    
-  <input class="btn btn-default" id="{{following_topic.id}}" data-topicid="{{following_topic.id}}" type='submit' value="Submit"/> 
+    <input class="btn btn-default" id="add-submit-{{following_topic.id}}" data-topicid="{{following_topic.id}}" type='submit' value="Submit"/> 
   </form>
-</div>
 
-
+{% include 'javascript.html' %}
 
 

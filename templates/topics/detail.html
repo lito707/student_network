@@ -1,6 +1,55 @@
+{% extends "base.html" %}
+{% block topic_detail_content %}
+<div class="section">
+	
 <h1>{{ topic.topic_name }}</h1>
 <ul>
-{% for attribute in topic.get_fields %}
-    <li>{{ attribute }}</li>
-{% endfor %}
+	{% for field in topic.get_fields %}
+    <li>{{ field }}</li>
+	{% endfor %}
 </ul>
+
+<h1>Resources</h1>
+{% if topic_resources %}
+<ul>
+	{% for resource in topic_resources %}
+	<div class="panel panel-primary">
+		<div class="panel-heading">
+        	<h3 class="panel-title">Resource Name: {{resource.resource_name}}</h3>
+     	</div>
+     	<div class="panel-body">
+     		<div class="panel panel-default">
+
+				<div class="panel-heading"><h3 class="panel-title">Resource Type</h3></div>
+				<div class="panel-body">{{resource.resource_type}}</div>
+
+      			<div class="panel-heading"><h3 class="panel-title">Link</h3></div>
+     			<div class="panel-body"><a href="{{resource.url}}">Link of {{resource.resource_name}}</a></div>
+
+				<div class="panel-heading"><h3 class="panel-title">Description</h3></div>
+     			<div class="panel-body">{{resource.description}}</div>
+
+     			<div class="panel-heading"><h3 class="panel-title">Date Added</h3></div>
+     			<div class="panel-body">{{resource.created_at}}</div>
+
+			</div>
+      	</div>
+	</div>
+
+	{% endfor %}
+</ul>
+{% else %}
+<h2><span class="label label-info">This topic has no resources</span></h2>
+{% endif %}
+</div>
+
+{% endblock %}
+
+<div class="panel panel-primary">
+      <div class="panel-heading">
+        <h3 class="panel-title">Panel title</h3>
+      </div>
+      <div class="panel-body">
+        Panel content
+      </div>
+    </div>

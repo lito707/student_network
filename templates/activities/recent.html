@@ -1,19 +1,21 @@
-
 <div  class="sidebar" id="activities-container">
-	{% if user.is_authenticated %}
-	<h1>Authenticated{{ topic }}</h1>
+	<h1>Recent Activities</h1>
 		
+	{%if stream %}
 	{% for s in stream %}
 
-		<li>{{ s }}</li>
+		<li class="list-group-item">{{ s }}</li>
 
 	{% endfor %}
-		
 	{% else %}
+		<div class="alert alert-info" role="alert">
+			<strong>You are currently not following any topic!</strong>
+			<br>
+			Click <a href="{% url 'topics:index' %}">here </a> to start following!!!
+		</div>
 
-	<h1>No luck</h1>
-
-	{% endif%}
+	{% endif %}
+	
 </div>
 
 

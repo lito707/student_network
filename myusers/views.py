@@ -6,8 +6,11 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
 
 
-# Create your views here.
 def register(request):
+    """
+    Return a render template and context depending if a form is valid and a user
+    registers successfully. If not successful registration return the error form
+    """
 
     title = "Register"
     template = "myusers/register.html"
@@ -20,7 +23,6 @@ def register(request):
         context = {
             "title":title,
             "registered":True
-            # "form": form,
         }
     else:
         context = {
@@ -32,52 +34,45 @@ def register(request):
 
 
 def sign_in(request):
-    h1=""
+    """
+    Render the template needed to login, context depends whether if the user can 
+    successfully sign in. Redirect to home page if login is successful
+
+    """
+
+    h1=None
     template="myusers/login.html"
     form = MyUserLoginForm(request.POST or None)
     if request.method == 'POST':
-
         username = request.POST['username']
         password = request.POST['password']
-
         user = authenticate(username=username, password=password)
 
         if user is not None:
+            # check whether user is authenticated
             if user.is_active:
+                # check whether user is active
                 login(request, user)
-                print "loggin"
-                # template = "users/login_success.html"
+                # redirect to home page
                 return HttpResponseRedirect("/")
             else:
-                # User is not active
                 h1 = "User not active"
         else:
             print "Invalid login details"
             h1 = "Invalid login details"
     else:
         h1 = "Login"        
-        
-
-
     context = {
         "form":form,
         "h1":h1
     }
-
-
     return render(request, template, context)
 
 
-
-# def redirect_to_sign_in(next, login_url = None,
-#     redirect_field_name = REDIRECT_FIELD_NAME):
-#
-#     return ""
-
 def sign_out(request):
-    # print "log out usr", request.user
-    # print "log out usr", request.user.id
+    """
+    Sign out a user making a request, redirect to home page after.
+    """
     logout(request)
-    # print request.user.is_authenticated()
     
     return HttpResponseRedirect("/")

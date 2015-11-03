@@ -1,3 +1,4 @@
 from django.db import models
 
-# Create your models here.
+# The models for the activities are stored within models created by the 
+# actstream library 

@@ -2,8 +2,11 @@ from django.db import models
 from topics.models import Topic
 from django.contrib.auth.models import User
 
-# Create your models here.
+
 class Resource(models.Model):
+    """
+    Resource model class with defined fields
+    """
     resource_name = models.CharField(max_length=100)
     url = models.URLField()
     description = models.TextField()
@@ -13,11 +16,13 @@ class Resource(models.Model):
     topic = models.ForeignKey(Topic)
     
 
-    # use of email to perform activities
-    # def get_fields(self):
-    #     fields = [self.name, self.url, self. descriptionself.create_at, self.]
-    #     # print "fields ",fields
-    #     return fields
+    
+    def get_fields(self):
+        """
+        Return all the fields the for a resource instance.
+        """
+        fields = [self.resource_name, self.url, self.description, self.resource_type, self.user]
+        return fields
 
 
     def __str__(self):

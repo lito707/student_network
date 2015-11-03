@@ -1,8 +1,10 @@
+
 <div class="sidebar" id="left-sidebar">
-	<h1>Actions:</h1>
-	<h3>Topic</h3>
- 	<a href="{% url 'topics:create' %}"> Create Topic </a>
- 	<br>
- 	<a href="{% url 'topics:delete' %}"> Delete Topic </a>
-    
+	<h3>MY TOPICS</h3>
+	<ul class="list-group">
+		<li class="list-group-item"><a href="{% url 'topics:create' %}"> Add a Topic </a></li>
+		<li class="list-group-item"><a href="{% url 'topics:topics_created' %}"> Topics Created</a></li>
+	</ul>
+	
+ 	
 </div>
