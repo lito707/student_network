@@ -1,21 +1,11 @@
 {% extends "base.html" %}
-
 {% block login_content %}
 <div class="section" id="login-container" > 	
 	<title>Login</title>
 	<h1>{{ h1 }}</h1>
-
-
 	<form method='post' >{% csrf_token %}
 	  {{ form.as_p }}
-
 	  <input class='btn btn-lg btn-primary' type='submit' value='Login' role='button'/>
-
 	</form>
-		
-
-
 </div>
-
-
 {% endblock %}

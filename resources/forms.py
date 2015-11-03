@@ -10,7 +10,9 @@ class AddResourceForm(forms.ModelForm):
 	resource_type = forms.CharField(label='Type',max_length=100)
 
 	class Meta:
-		# Model used in the form
+		"""
+		Model used in the form
+		"""
 		model = Resource
 		fields = ['resource_name', 'url', 'description', 'resource_type']
 

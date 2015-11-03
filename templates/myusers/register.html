@@ -1,26 +1,16 @@
 {% extends "base.html" %}
-
 {% block register_content%}
 <div class="section">
-	
-<title>{{ title }}</title>
-
-
-{% if registered %}
-<h1>{{ title }}</h1>
-<a href="{% url 'users:login' %}">Login</a>
-
-{% else %}
-<h1>{{ title }}</h1>
-<form method='POST' action=''>{% csrf_token %}
-  {{ form.as_p }}
-
-  <input class="btn btn-lg btn-primary" type='submit' value="Register"/>
-
-</form>
-
-{% endif %}	
-
+	<title>{{ title }}</title>
+	{% if registered %}
+	<h1>{{ title }}</h1>
+	<a href="{% url 'users:login' %}">Login</a>
+	{% else %}
+	<h1>{{ title }}</h1>
+	<form method='POST' action=''>{% csrf_token %}
+  	{{ form.as_p }}
+  	<input class="btn btn-lg btn-primary" type='submit' value="Register"/>
+	</form>
+	{% endif %}	
 </div>
-
 {% endblock %}

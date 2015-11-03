@@ -6,7 +6,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
@@ -22,35 +21,21 @@
 
     {% include 'navbar.html' %}
 
-    
-
-    <!-- myusers -->
     {% block login_content %}{% endblock %}    
     {% block register_content%}{% endblock %}
 
-    <!-- userhome -->
     {% block home_content %}{% endblock %}
 
-    <!-- topics -->
     {% block topic_create_content %}{% endblock %}
     {% block index_content%}{% endblock %}
     {% block topics_created_content%}{% endblock %}
     {% block topic_detail_content %}{% endblock %}
 
     {% block create_successful_content %}{% endblock %}
-
     {% block following_content %}{% endblock %}
+    {% block add_resource_form_content %}{%endblock%}
 
-    {%block add_resource_form_content %}{%endblock%}
-
-
-
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
     {% include 'javascript.html' %}
 
-
-</body></html>
+    </body>
+</html>

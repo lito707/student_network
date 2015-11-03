@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 
 class Resource(models.Model):
     """
-    Resource model class with defined fields
+    Resource model with defined fields
     """
     resource_name = models.CharField(max_length=100)
     url = models.URLField()
@@ -21,9 +21,9 @@ class Resource(models.Model):
         """
         Return all the fields the for a resource instance.
         """
+        # set the errors for the fields in the form
         fields = [self.resource_name, self.url, self.description, self.resource_type, self.user]
         return fields
-
 
     def __str__(self):
         return self.resource_name

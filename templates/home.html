@@ -1,33 +1,14 @@
 {% extends "base.html" %}
 
 {% block home_content %}
-
-
 	{% if user.is_authenticated %}
 		{% include 'actions.html' %}
-
 		{% include 'activities/recent.html' %}
-
 	{% else %}
 		<div class="section">
-			
 			<h1>Content not available to  unregistered users.</h1>	
 		</div>
-		
 	{%  endif%}
-
-<!-- <div class="section" id="activity-container">
-
-  <h1>Activities</h1>
-  <ul>
-    <li>Somth</li>
-  </ul>
-
-  
-</div> -->
- 
-
-
 {% endblock %}
 
 
